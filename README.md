@@ -82,7 +82,7 @@ Make sure you have the following installed:
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/<your-username>/AniStreammm.git
+git clone https://github.com/<your-username>/AniStream.git
 cd AniStreammm
 ```
 
