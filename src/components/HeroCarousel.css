@@ -1,0 +1,206 @@
+.hero-carousel {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: calc(var(--header-height) * -1); /* Pull up behind transparent navbar */
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    var(--color-bg) 0%, 
+    rgba(10, 10, 15, 0.8) 40%, 
+    rgba(10, 10, 15, 0.2) 100%
+  ),
+  linear-gradient(
+    0deg, 
+    var(--color-bg) 0%, 
+    transparent 20%
+  );
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  padding-top: var(--header-height);
+}
+
+.hero-info {
+  max-width: 600px;
+}
+
+.hero-genres {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.genre-tag {
+  background: var(--color-glass);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  border: 1px solid var(--color-glass-border);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  letter-spacing: -1px;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xl);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.btn-secondary {
+  background: var(--color-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  border: 1px solid var(--color-glass-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Controls */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: white;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.hero-carousel:hover .carousel-control {
+  opacity: 1;
+}
+
+.carousel-control:hover {
+  background: var(--color-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control.prev {
+  left: var(--spacing-xl);
+}
+
+.carousel-control.next {
+  right: var(--spacing-xl);
+}
+
+/* Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: var(--spacing-xl);
+  left: var(--spacing-xl);
+  z-index: 10;
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.indicator.active {
+  background: var(--color-primary);
+  width: 32px;
+  border-radius: 6px;
+  box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-overlay {
+    background: linear-gradient(
+      0deg, 
+      var(--color-bg) 0%, 
+      rgba(10, 10, 15, 0.8) 50%, 
+      rgba(10, 10, 15, 0.4) 100%
+    );
+  }
+  .carousel-control {
+    display: none;
+  }
+  .carousel-indicators {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: var(--spacing-lg);
+  }
+}

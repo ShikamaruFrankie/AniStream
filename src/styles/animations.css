@@ -1,0 +1,63 @@
+/* Keyframes */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+  }
+}
+
+/* Animation Utilities */
+.animate-fade-in {
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--transition-normal) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown var(--transition-normal) forwards;
+}
+
+/* Staggered delays for mapped lists */
+.animate-stagger-1 { animation-delay: 100ms; }
+.animate-stagger-2 { animation-delay: 200ms; }
+.animate-stagger-3 { animation-delay: 300ms; }
+.animate-stagger-4 { animation-delay: 400ms; }
