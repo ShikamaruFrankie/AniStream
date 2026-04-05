@@ -21,49 +21,6 @@ const PROVIDERS: Provider[] = [
     fetchUrl: async (anilistId: string, ep: string, _title: string, isDub: boolean) => {
       return `https://vidsrc.cc/v2/embed/anime/ani${anilistId}/${ep}/${isDub ? 'dub' : 'sub'}`;
     }
-  },
-  {
-    name: 'Server 2 (MegaCloud)',
-    isNative: false,
-    fetchUrl: async (_anilistId: string, ep: string, title: string, _isDub: boolean) => {
-      const res = await fetch(`/api/stream/megacloud/${encodeURIComponent(title)}/${ep}`);
-      const data = await res.json();
-      if (!data.success && data.error) throw new Error(data.error);
-      return data.embedUrl || '';
-    }
-  },
-  {
-    name: 'Server 3 (VideoCloud)',
-    isNative: false,
-    fetchUrl: async (_anilistId: string, ep: string, title: string, _isDub: boolean) => {
-      const res = await fetch(`/api/stream/videocloud/${encodeURIComponent(title)}/${ep}`);
-      const data = await res.json();
-      if (!data.success && data.error) throw new Error(data.error);
-      return data.embedUrl || '';
-    }
-  },
-  {
-    name: 'Server 4 (Megaplay)',
-    isNative: false,
-    fetchUrl: async (_anilistId: string, ep: string, title: string, _isDub: boolean) => {
-      const res = await fetch(`/api/stream/megaplay/${encodeURIComponent(title)}/${ep}`);
-      const data = await res.json();
-      if (!data.success && data.error) throw new Error(data.error);
-      return data.embedUrl || '';
-    }
-  },
-  {
-    name: 'Server 5 (Native)',
-    isNative: true,
-    fetchUrl: async (_anilistId: string, ep: string, title: string, _isDub: boolean) => {
-      const res = await fetch(`/api/stream/native/${encodeURIComponent(title)}/${ep}`);
-      const data = await res.json();
-      if (!data.success && data.error) throw new Error(data.error);
-      if (!data.sources || data.sources.length === 0) throw new Error('No sources found');
-      // Pick best quality (e.g. 1080p or whatever is first)
-      const bestSource = data.sources[0];
-      return `/api/stream/proxy?referer=https://kwik.cx/&url=${encodeURIComponent(bestSource.url)}`;
-    }
   }
 ];
 
